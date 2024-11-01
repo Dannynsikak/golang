@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
 
+	"github.com/elastic/go-sysinfo"
+)
 func main() {
-        fmt.Println("Hello, World!")  // This should print an output
+	hostinfo, err := sysinfo.Host()
+	if err != nil {
+		log.Fatalln(err)
+	} else {
+		fmt.Println(hostinfo.Info().MACs)
+	}
 }
